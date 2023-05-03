@@ -99,7 +99,7 @@ namespace Solnet.Rpc
         /// <param name="pubKey">The public key.</param>
         /// <param name="commitment">The state commitment to consider when querying the ledger state.</param>
         /// <returns>A task which may return a request result holding the context and address balance.</returns>
-        Task<RequestResult<ResponseValue<ulong>>> GetBalanceAsync(string pubKey, Commitment commitment = Commitment.Finalized);
+        Task<RequestResult<ResponseValue<ulong>>> GetBalanceAsync(string pubKey, Commitment commitment = Commitment.Finalized, int? minContextSlot = null);
 
         /// <summary>
         /// Gets the balance <b>synchronously</b> for a certain public key.
@@ -109,8 +109,9 @@ namespace Solnet.Rpc
         /// </summary>
         /// <param name="pubKey">The public key.</param>
         /// <param name="commitment">The state commitment to consider when querying the ledger state.</param>
+        /// <param name="minContextSlot">The minimum slot that the request can be evaluated at</param>
         /// <returns>Returns an object that wraps the result along with possible errors with the request.</returns>
-        RequestResult<ResponseValue<ulong>> GetBalance(string pubKey, Commitment commitment = Commitment.Finalized);
+        RequestResult<ResponseValue<ulong>> GetBalance(string pubKey, Commitment commitment = Commitment.Finalized, int? minContextSlot = null);
 
         /// <summary>
         /// Returns identity and transaction information about a block in the ledger.

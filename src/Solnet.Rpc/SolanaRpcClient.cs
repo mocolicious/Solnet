@@ -194,16 +194,16 @@ namespace Solnet.Rpc
 
         /// <inheritdoc cref="IRpcClient.GetBalanceAsync"/>
         public async Task<RequestResult<ResponseValue<ulong>>> GetBalanceAsync(string pubKey,
-            Commitment commitment = Commitment.Finalized)
+            Commitment commitment = Commitment.Finalized, int? minContextSlot = null)
         {
             return await SendRequestAsync<ResponseValue<ulong>>("getBalance",
-                Parameters.Create(pubKey, ConfigObject.Create(HandleCommitment(commitment))));
+                Parameters.Create(pubKey, ConfigObject.Create(KeyValue.Create("minContextSlot", minContextSlot), HandleCommitment(commitment))));
         }
 
         /// <inheritdoc cref="IRpcClient.GetBalance"/>
         public RequestResult<ResponseValue<ulong>> GetBalance(string pubKey,
-            Commitment commitment = Commitment.Finalized)
-            => GetBalanceAsync(pubKey, commitment).Result;
+            Commitment commitment = Commitment.Finalized, int? minContextSlot = null)
+            => GetBalanceAsync(pubKey, commitment, minContextSlot).Result;
 
         #region Blocks
 
